@@ -13,6 +13,12 @@
 
 using namespace std;
 
+#include "stage2-3-tests/sneaky-detect-large-buffer.h"     // ensure super large buffers are not being used
+														   
+#include "stage2-3-tests/sneaky-uses-dynamic-allocation.h" // ensure dynamic allocation
+														   
+#include "stage2-3-tests/sneaky-use-newdelete-ops.h"       // assure new[] and delete[] are being used
+													   
 // Copy constructor
 TEST(CopyConstructor, EmptyStack) {
     stack<string> stk1;
@@ -278,4 +284,6 @@ TEST(AssignmentOperator, Chaining) {
     ASSERT_EQ(stk1.top(), "cherry");
     ASSERT_EQ(stk1.size(), 1);
 }
+
+#include "stage2-3-tests/sneaky-detect-memory-leak.h"      // memory leaks?
 
