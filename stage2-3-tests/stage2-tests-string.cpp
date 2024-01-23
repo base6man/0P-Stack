@@ -302,11 +302,11 @@ TEST(Dynamic, ExtremelyLarge) {
     ASSERT_TRUE(stk.is_empty());
 }
 
-#include "stage2-3-tests/sneaky-use-newdelete-ops.h"      // assure new[] and delete[] are being used
-
-#include "stage2-3-tests/sneaky-uses-dynamic-allocation.h" // ensure dynamic allocation
-														   
 #include "stage2-3-tests/sneaky-detect-large-buffer.h"     // ensure super large buffers are not being used
 														   
+#include "stage2-3-tests/sneaky-uses-dynamic-allocation.h" // ensure dynamic allocation
+														   
+#include "stage2-3-tests/sneaky-use-newdelete-ops.h"       // assure new[] and delete[] are being used
+													   
 #include "stage2-3-tests/sneaky-detect-memory-leak.h"      // memory leaks?
 
