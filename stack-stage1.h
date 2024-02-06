@@ -25,18 +25,48 @@ using namespace std;
 
 class stack {
   public:
-    string top(); // non-inline, implemented in stack-stage1.cpp
+    string top() {
+      return _data[data_size-1];
+    }
 
     // inline definitions, doing nothing at the moment
-    void push(const string &) { return; }
-    void pop() { return; }
-    size_t size() { return 0; }
-    bool is_empty() { return true; }
+    void push(const string &new_string) { 
 
-    stack() { ; }
+      if(data_size == stack_size){
+        stack_size *= 2;
+        
+        string *new_data = new string[stack_size];
+        for(size_t i = 0; i < data_size; i++){
+          new_data[i] = _data[i];
+        }
+
+        delete[] _data;
+        _data = new_data;
+      }
+      _data[data_size] = new_string;
+      data_size++;
+    }
+
+    void pop() { 
+      data_size--;
+      _data[data_size] = "";
+    }
+
+    size_t size() { 
+      return data_size;
+    }
+
+    bool is_empty() { return data_size == 0; }
+
+    stack() { 
+      data_size = 0;
+      _data = new string[stack_size];
+    }
 
   private:
-    string _data[4];
+    string *_data;
+    size_t data_size;
+    size_t stack_size = 32;
 };
 
 #endif
