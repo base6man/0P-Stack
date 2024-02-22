@@ -20,6 +20,7 @@
 
 #include <cstddef> // for size_t
 #include <string>  // for stage 1
+#include <iostream>
 
 using namespace std;
 
@@ -35,7 +36,7 @@ class stack {
     void push(const T &new_t) { 
 
         if(data_size == stack_size){
-            stack_size *= 2;
+            stack_size = stack_size * 1.5 + 1;
             
             T *new_data = new T[stack_size];
             for(size_t i = 0; i < data_size; i++){
